@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.css';
-import './Components/login';
+import Login from './Components/login';
 
 
 function App() {
   return (
     <div className="App">
-      <login/>
+      <Login/>
+      
     </div>
   );
 }
