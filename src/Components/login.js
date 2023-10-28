@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -11,18 +11,40 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
+const apiUrl = 'http://127.0.0.1:8000/login';
 
 export default function Login() {
-  const handleSubmit = (event) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    const requestData = {
+      email: email,
+      password: password,
+    };
+
+    try {
+      // Make a POST request to your API endpoint
+      const response = await axios.post(apiUrl, requestData);
+      if (response.status === 200) {
+        console.log('Login successful');
+        navigate('/home');
+      } else {
+        // Handle other response statuses (e.g., error scenarios)
+        console.error('Login failed');
+      }
+    } catch (error) {
+      // Handle any errors that occur during the request
+      console.error('Error:', error);
+    }
   };
 
-  return (
+ return (
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -49,6 +71,8 @@ export default function Login() {
               name="email"
               autoComplete="email"
               autoFocus
+              value ={email}
+              onChange={(e)=> setEmail(e.target.value)}
             />
             <TextField
               margin="normal"
@@ -59,6 +83,9 @@ export default function Login() {
               type="password"
               id="password"
               autoComplete="current-password"
+              value = {password}
+              onChange = {(e) => setPassword(e.target.value)}
+
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -77,7 +104,7 @@ export default function Login() {
         </Box>
       </Container>
   );
-}
+} 
 
 /*<Grid container>
               <Grid item xs>
