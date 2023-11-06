@@ -1,9 +1,13 @@
-
-
+import React from "react";
+import Form from '../Components/form'
 export default function Home() {
     return (
       <div>
-        <p1>This is the Home page</p1>
+
+
+        <Form />
+      
+      
       </div>
     );
   }
