@@ -30,7 +30,7 @@ export default function Form() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            bgcolor: '#e4e4e4',
+            bgcolor: '#ffffff',
             width: 'sm',
             height: 'sm', 
             
