@@ -5,25 +5,25 @@ import Container from '@mui/material/Container';
 import { Box, CssBaseline } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
-
+import Grid from '@mui/material/Grid';
 
 
 
 
 export default function Form() {
     
-    const [age, setAge] = React.useState('');
+    
+   const handleLogOff = () => {
+          // Add logic to handle log off
+          console.log('Logged off');
+        };
+        return (
 
-    const handleChange = (event) => {
-      setAge(event.target.value);
-        }
-  return (
-
+    
     <Container maxWidth="sm">
+    
     <Box
         sx={{
             marginTop: 8,
@@ -36,24 +36,28 @@ export default function Form() {
             
           }}
           >
-
-        <Typography component="h1" variant="h6">How many classes do you want to take per semester?</Typography>
+        <Grid container justifyContent="flex-end">
+          <Button onClick={handleLogOff} variant="outlined" color="secondary">
+          Log Off
+          </Button>
+        </Grid>
+        <Typography component="h1" variant="h6">How many credit hours do you want to take per semester?</Typography>
         <br/>
         <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label"># of Classes</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={age}
-          label="numClasses"
-          onChange={handleChange}
-        >
-          <MenuItem value={1}>One</MenuItem>
-          <MenuItem value={2}>Two</MenuItem>
-          <MenuItem value={3}>Three</MenuItem>
-          <MenuItem value={4}>Four</MenuItem>
-          <MenuItem value={5}>Five</MenuItem>
-        </Select>
+        <InputLabel id="demo-simple-select-label"># of Hours</InputLabel>
+        <TextField
+          id="outlined-number"
+          label="# of Hours"
+          type="number"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          inputProps={{
+            min: 3,
+            max: 18,
+            step: 1,
+          }}
+        />
         </FormControl>
         <br/>
         <br/>
@@ -63,7 +67,7 @@ export default function Form() {
         </Stack>
         </Box>
 
-
+    
 
 
 
