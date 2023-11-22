@@ -23,14 +23,14 @@ export default function Login() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const requestData = {
+    const requestData = { // creates a non-changing object called requestData - this contains an email and password field
       email: email,
       password: password,
     };
 
     try {
-      // Make a POST request to your API endpoint
-      const response = await axios.post(apiUrl, requestData);
+      // Make a POST request to the apiURL
+      const response = await axios.post(apiUrl, requestData); // send the requestData object to the apiURL 
       if (response.status === 200) {
         console.log('Login successful');
         navigate('/home');
@@ -71,9 +71,11 @@ export default function Login() {
               name="email"
               autoComplete="email"
               autoFocus
-              value ={email}
-              onChange={(e)=> setEmail(e.target.value)}
-            />
+              value ={email} // sets the value in the text field to the email constant created earlier
+              onChange={(e)=> setEmail(e.target.value)} /*onChange is an event that triggers when an input changes - e is an event object that holds information on the change
+                                                         setEmail is the setter function we made that changes the email value - e.target is the input element and e.target.value
+                                                        the value currently in the input element */
+            />    
             <TextField
               margin="normal"
               required
