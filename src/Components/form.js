@@ -8,17 +8,24 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Stack from '@mui/material/Stack';
 import Grid from '@mui/material/Grid';
+import { useNavigate } from 'react-router-dom';
 
 
 
 
 export default function Form() {
     
+  const history = useNavigate();
     
-   const handleLogOff = () => {
-          // Add logic to handle log off
-          console.log('Logged off');
-        };
+  const handleLogOff = () => {
+    // Add logic to handle log off
+    console.log('Logged off');
+
+    // Perform any additional log off operations (e.g., clear session, user data)
+
+    // Redirect the user to the login page
+    history('/login'); // Replace '/login' with the appropriate login route
+  };
         return (
 
     
