@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; //imp
 import LoginPage from './Pages/LoginPage';
 import Home from './Pages/Home';
 import Schedules from './Pages/Schedules';
+import AdminH from './Pages/AdminH';
 
 
 
@@ -15,6 +16,7 @@ function App() {
           <Route path='/login' element ={<LoginPage/>} />
           <Route path ='/home' element = {<Home/>} />
           <Route path = '/schedules' element = {<Schedules/>}/>
+          <Route path = '/adminHome' element = {<AdminH/>}/>
         </Routes>
       </Router>
     </div>
