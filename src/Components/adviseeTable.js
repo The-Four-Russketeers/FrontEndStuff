@@ -22,12 +22,14 @@ export default function AdvisedAdviseesTable() {
   }, []); // Run this effect only once when the component mounts
 
   return (
-    <div style={{ height: 400, width: '100%',marginTop: '250px' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', width: '100%', marginLeft: '0px'}}>
       <DataGrid
         rows={advisees}
         columns={columns}
-        pageSize={5}
         checkboxSelection
+        autoHeight
+        pageSizeOptions={false}
+        paginationModel={false}
       />
     </div>
   );
