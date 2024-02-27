@@ -5,6 +5,9 @@ import Home from './Pages/Home';
 import Schedules from './Pages/Schedules';
 import AdminH from './Pages/AdminH';
 
+/*axios.defaults.xsrfCookieName = 'csrftoken';
+axios.defaults.xsrfHeaderName = 'X-CSRFToken';
+axios.defaults.withCredentials = true; */
 
 
 function App() {

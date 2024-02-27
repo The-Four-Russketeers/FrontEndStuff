@@ -22,7 +22,7 @@ export default function AdvisedAdviseesTable() {
   }, []); // Run this effect only once when the component mounts
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', width: '100%', marginLeft: '0px'}}>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', width: '100%', marginLeft: '0 px'}}>
       <DataGrid
         rows={advisees}
         columns={columns}

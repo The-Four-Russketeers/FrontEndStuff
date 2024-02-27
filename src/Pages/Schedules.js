@@ -13,5 +13,11 @@ export default function Schedules(){
     )
     
 }
+/*class apiFetch():
+	url = "http://127.0.0.1:8000/showSchedule?format=json"
+	returndata = requests.get(url).json()
+
+class index(request):
+		data = apiFetch.returndata*/
 
 
