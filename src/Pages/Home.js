@@ -1,18 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Form from '../Components/form';
-import Navbar from '../Components/navbar';
+import Divider from '@mui/material/Divider';
+import CircularProgress from '@mui/material/CircularProgress';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import Navbar from '../Components/navbar';
 
-const apiUrl = 'http://127.0.0.1:8000/getClassesNeeded?format=json';
+const apiUrl = 'http://127.0.0.1:8000/test?format=json';
+// THIS SHOULD BE OUR DASHBOARD
 
 const YourComponent = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
+  const [semesters, setSemesters] = useState([]);
+  const [progress, setProgress] = useState(); // Initial progress value
+
+  function setVariables(apiData) {
+    setData(apiData);
+    setProgress(apiData.percentage);
+    setSemesters(apiData.semesters.filter(semester => semester.length > 0));
+  }
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:8000/getClassesNeeded?format=json')
+    axios.get(apiUrl)
       .then(response => {
-        setData(response.data); // Assuming response.data is an array of arrays representing rows
+        setVariables(response.data);
       })
       .catch(error => {
         console.error('Error fetching data: ', error);
@@ -21,34 +31,47 @@ const YourComponent = () => {
 
   return (
     <div>
-      <h1>Courses</h1>
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>ID</TableCell>
-              <TableCell>Name</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {data.map((row, index) => (
-              <TableRow key={index}>
-                <TableCell>{row[0]}</TableCell> {/* Assuming the first item in each row is the ID */}
-                <TableCell>{row[1]}</TableCell> {/* Assuming the second item in each row is the Name */}
+      <Navbar />
+      <Divider>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <CircularProgress variant="determinate" value={progress} style={{ marginRight: '10px'}} />
+          <div>
+            <p>John Smith</p>
+            <p>Bachelor of Computer Science</p>
+          </div>
+        </div>
+      </Divider>
+
+      <div style={{ marginBottom: '20px' }}></div>
+
+      <Divider>
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell style={{ fontWeight: 'bold' }}>Semester</TableCell>
+                {semesters.map((semester, index) => (
+                  <TableCell key={index} style={{ fontWeight: 'bold' }}>Semester {index + 1}</TableCell>
+                ))}
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+            </TableHead>
+            <TableBody>
+              {semesters[0] && semesters[0].map((_, rowIndex) => (
+                <TableRow key={rowIndex}>
+                  <TableCell>{`Class ${rowIndex + 1}`}</TableCell>
+                  {semesters.map((semester, columnIndex) => (
+                    <TableCell key={columnIndex}>
+                      {semester[rowIndex] ? `${semester[rowIndex][0]} ${semester[rowIndex][1]}` : ''}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Divider>
     </div>
   );
 };
 
 export default YourComponent;
-/*export default function LoginPage() {
-  return (
-    <div>
-      <Form />
-    </div>
-  );
-}*/

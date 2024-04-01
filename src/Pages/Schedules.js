@@ -1,53 +1,79 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Navbar from '../Components/navbar'; 
-import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Paper } from '@mui/material';
+import Divider from '@mui/material/Divider';
+import CircularProgress from '@mui/material/CircularProgress';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import Navbar from '../Components/navbar';
 
-export default function Schedules() {
-    const [data, setData] = useState([]);
+const apiUrl = 'http://127.0.0.1:8000/test?format=json';
 
-    useEffect(() => {
-        axios.get('http://127.0.0.1:8000/getClassesNeeded?format=json')
-            .then(response => {
-                setData(response.data);
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-            });
-    }, []);
+const YourComponent = () => {
+  const [data, setData] = useState({});
+  const [semesters, setSemesters] = useState([]);
+  const [progress, setProgress] = useState(); // Initial progress value
 
-    return (
-        <div>
-            <Navbar />
-            <div>
-                <h1>Courses</h1>
-                <TableContainer component={Paper}>
-                    <Table>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>Subject</TableCell>
-                                <TableCell>ID</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {data.map((row, index) => (
-                                <TableRow key={index}>
-                                    <TableCell>{row[0]}</TableCell>
-                                    <TableCell>{row[1]}</TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-            </div>
+  function setVariables(apiData) {
+    setData(apiData);
+    setProgress(apiData.percentage);
+    setSemesters(apiData.semesters.filter(semester => semester.length > 0));
+  }
+
+  useEffect(() => {
+    axios.get(apiUrl)
+      .then(response => {
+        setVariables(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching data: ', error);
+      });
+  }, []);
+
+  return (
+    <div>
+      <Navbar />
+      <Divider>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <CircularProgress variant="determinate" value={progress} style={{ marginRight: '10px'}} />
+          <div>
+            <p>John Smith</p>
+            <p>Bachelor of Computer Science</p>
+          </div>
         </div>
-    );
-}
-/*class apiFetch():
-	url = "http://127.0.0.1:8000/showSchedule?format=json"
-	returndata = requests.get(url).json()
+      </Divider>
 
-class index(request):
-		data = apiFetch.returndata*/
+      <div style={{ marginBottom: '20px' }}></div>
+
+      <Divider>
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell style={{ fontWeight: 'bold' }}>Semester</TableCell>
+                {semesters.map((semester, index) => (
+                  <TableCell key={index} style={{ fontWeight: 'bold' }}>Semester {index + 1}</TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {semesters[0] && semesters[0].map((_, rowIndex) => (
+                <TableRow key={rowIndex}>
+                  <TableCell>{`Class ${rowIndex + 1}`}</TableCell>
+                  {semesters.map((semester, columnIndex) => (
+                    <TableCell key={columnIndex}>
+                      {semester[rowIndex] ? `${semester[rowIndex][0]} ${semester[rowIndex][1]}` : ''}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Divider>
+    </div>
+  );
+};
+
+export default YourComponent;
+
 
 
