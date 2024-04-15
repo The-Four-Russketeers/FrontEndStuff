@@ -4,6 +4,7 @@ import Divider from '@mui/material/Divider';
 import CircularProgress from '@mui/material/CircularProgress';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import Navbar from '../Components/navbar';
+import form from '../Components/form';
 
 const apiUrl = 'http://127.0.0.1:8000/test?format=json';
 
@@ -48,7 +49,7 @@ const YourComponent = () => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell style={{ fontWeight: 'bold' }}>Semester</TableCell>
+                
                 {semesters.map((semester, index) => (
                   <TableCell key={index} style={{ fontWeight: 'bold' }}>Semester {index + 1}</TableCell>
                 ))}
@@ -57,7 +58,7 @@ const YourComponent = () => {
             <TableBody>
               {semesters[0] && semesters[0].map((_, rowIndex) => (
                 <TableRow key={rowIndex}>
-                  <TableCell>{`Class ${rowIndex + 1}`}</TableCell>
+                  
                   {semesters.map((semester, columnIndex) => (
                     <TableCell key={columnIndex}>
                       {semester[rowIndex] ? `${semester[rowIndex][0]} ${semester[rowIndex][1]}` : ''}

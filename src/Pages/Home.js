@@ -12,15 +12,20 @@ const YourComponent = () => {
   const [data, setData] = useState({});
   const [semesters, setSemesters] = useState([]);
   const [progress, setProgress] = useState(); // Initial progress value
+  const [hoursDesired, setHoursDesired] = useState(16); // Default hours per semester
 
   function setVariables(apiData) {
     setData(apiData);
     setProgress(apiData.percentage);
     setSemesters(apiData.semesters.filter(semester => semester.length > 0));
   }
-
+  
   useEffect(() => {
-    axios.get(apiUrl)
+    axios.get(apiUrl, {
+      params:{
+        hoursDesired: hoursDesired // <------------------- This is where the value needs to be passed 
+      }
+    })
       .then(response => {
         setVariables(response.data);
       })
@@ -49,7 +54,6 @@ const YourComponent = () => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell style={{ fontWeight: 'bold' }}>Semester</TableCell>
                 {semesters.map((semester, index) => (
                   <TableCell key={index} style={{ fontWeight: 'bold' }}>Semester {index + 1}</TableCell>
                 ))}
@@ -58,7 +62,6 @@ const YourComponent = () => {
             <TableBody>
               {semesters[0] && semesters[0].map((_, rowIndex) => (
                 <TableRow key={rowIndex}>
-                  <TableCell>{`Class ${rowIndex + 1}`}</TableCell>
                   {semesters.map((semester, columnIndex) => (
                     <TableCell key={columnIndex}>
                       {semester[rowIndex] ? `${semester[rowIndex][0]} ${semester[rowIndex][1]}` : ''}
