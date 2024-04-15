@@ -4,6 +4,7 @@ import LoginPage from './Pages/LoginPage';
 import Home from './Pages/Home';
 import Schedules from './Pages/Schedules';
 import AdminH from './Pages/AdminH';
+import Electives from './Pages/Electives';
 
 /*axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
@@ -20,6 +21,7 @@ function App() {
           <Route path ='/home' element = {<Home/>} />
           <Route path = '/schedules' element = {<Schedules/>}/>
           <Route path = '/adminHome' element = {<AdminH/>}/>
+          <Route path = '/electives' element = {<Electives/>}/>
         </Routes>
       </Router>
     </div>

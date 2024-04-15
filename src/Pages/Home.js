@@ -6,13 +6,13 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 import Navbar from '../Components/navbar';
 
 const apiUrl = 'http://127.0.0.1:8000/test?format=json';
-// THIS SHOULD BE OUR DASHBOARD
 
 const YourComponent = () => {
   const [data, setData] = useState({});
   const [semesters, setSemesters] = useState([]);
-  const [progress, setProgress] = useState(); // Initial progress value
-  const [hoursDesired, setHoursDesired] = useState(16); // Default hours per semester
+  const [progress, setProgress] = useState();
+  const [hoursDesired, setHoursDesired] = useState(16);
+  const [inputValue, setInputValue] = useState('16');
 
   function setVariables(apiData) {
     setData(apiData);
@@ -20,10 +20,15 @@ const YourComponent = () => {
     setSemesters(apiData.semesters.filter(semester => semester.length > 0));
   }
   
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setHoursDesired(parseInt(inputValue));
+  };
+
   useEffect(() => {
     axios.get(apiUrl, {
       params:{
-        hoursDesired: hoursDesired // <------------------- This is where the value needs to be passed 
+        hoursDesired: hoursDesired
       }
     })
       .then(response => {
@@ -32,7 +37,7 @@ const YourComponent = () => {
       .catch(error => {
         console.error('Error fetching data: ', error);
       });
-  }, []);
+  }, [hoursDesired]);
 
   return (
     <div>
@@ -73,6 +78,23 @@ const YourComponent = () => {
           </Table>
         </TableContainer>
       </Divider>
+
+      {/* Input field and submit button */}
+      <div style={{ marginTop: '20px', textAlign: 'center' }}>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="hoursDesired">Desired Hours Per Semester:</label>
+          <input
+            type="number"
+            id="hoursDesired"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            min="6"
+            max="28"
+            style={{ marginLeft: '5px', appearance: 'textfield', width: '35px' }}
+          />
+          <button type="submit" style={{ marginLeft: '5px' }}>Submit</button>
+        </form>
+      </div>
     </div>
   );
 };
