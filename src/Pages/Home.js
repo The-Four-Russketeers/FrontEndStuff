@@ -79,7 +79,7 @@ const YourComponent = () => {
         </TableContainer>
       </Divider>
 
-      {/* Input field and submit button */}
+      
       <div style={{ marginTop: '20px', textAlign: 'center' }}>
         <form onSubmit={handleSubmit}>
           <label htmlFor="hoursDesired">Desired Hours Per Semester:</label>
