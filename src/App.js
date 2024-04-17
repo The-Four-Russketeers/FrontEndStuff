@@ -6,6 +6,7 @@ import Schedules from './Pages/Schedules';
 import AdminH from './Pages/AdminH';
 import Electives from './Pages/Electives';
 
+
 /*axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 axios.defaults.withCredentials = true; */

@@ -1,0 +1,52 @@
+  body {
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .custom-button {
+    background-color:rgb(25, 118, 210);
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  .custom-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .custom-caption {
+    font-weight: bold;
+    font-size: 1.2em;
+    text-align: left;
+  }
+  
+  .custom-th {
+    text-align: left;
+    padding: 8px;
+    border: 1px solid black;
+    font-size: 0.8em;
+  }
+  
+  .custom-td {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  .custom-td-description {
+    text-align: left;
+    padding: 8px;
+    border-right: 1px solid black;
+  }
+
+  .custom-th:nth-child(1),
+.custom-td:nth-child(1) {
+  width:10%; /* Adjust width for the first column */
+}
+
+.custom-th:nth-child(2),
+.custom-td:nth-child(2) {
+  width: 18%; /* Adjust width for the second column */
+}
+

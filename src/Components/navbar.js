@@ -17,8 +17,10 @@ export default function Navbar() {
       <AppBar sx={{ position: 'fixed', top: 0, zIndex: 1000, background: '#31c67c', height: '64px' }}> {/* Ensure the AppBar has a fixed height */}
         <Toolbar style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '100%' }}> {/* Ensure the Toolbar has a fixed height */}
           <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}> {/* Set the height of the containing div to 100% */}
-            <Typography variant="h6" style={{ fontWeight: 'bold' }}>AdviSync</Typography>
-            <div style={{ height: '80%', borderLeft: '2px solid black', marginLeft: '10px' }}></div> {/* Vertical line */}
+          <Link to="/home" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <Typography variant="h6" style={{ fontWeight: 'bold'}}>Advisync</Typography>
+            </Link>
+            <div style={{ height: '90%', borderLeft: '2px solid white', marginLeft: '15px' }}></div> {/* Vertical line */}
           </div>
           <div style={{ marginLeft: '15px' }}>
             <Link to="/electives" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit' }}>
