@@ -33,6 +33,16 @@ export default function Navbar() {
         </Toolbar>
       </AppBar>
       <Toolbar />
+        <AppBar sx = {{background:'#31c67c' }}>
+            <Toolbar>
+                <Typography variant="h6" style={{ fontWeight: 'bold' }}>AdviSync</Typography>
+
+                <Tabs sx = {{marginLeft: 'auto'}} textColors = 'inherit'>
+                <Tab icon={<LogoutIcon />} onClick={handleLogOff} />
+
+                </Tabs>
+            </Toolbar>
+        </AppBar>
     </React.Fragment>
   );
 }
