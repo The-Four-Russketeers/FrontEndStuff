@@ -5,6 +5,7 @@ import Home from './Pages/Home';
 import Schedules from './Pages/Schedules';
 import AdminH from './Pages/AdminH';
 import Electives from './Pages/Electives';
+import Advisor from './Pages/Advisor';
 
 
 /*axios.defaults.xsrfCookieName = 'csrftoken';
@@ -23,6 +24,7 @@ function App() {
           <Route path = '/schedules' element = {<Schedules/>}/>
           <Route path = '/adminHome' element = {<AdminH/>}/>
           <Route path = '/electives' element = {<Electives/>}/>
+          <Route path = '/advisor' element ={<Advisor/>}/>
         </Routes>
       </Router>
     </div>
