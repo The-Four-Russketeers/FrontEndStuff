@@ -7,7 +7,6 @@ import AdminH from './Pages/AdminH';
 import Electives from './Pages/Electives';
 import Advisor from './Pages/Advisor';
 
-
 /*axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 axios.defaults.withCredentials = true; */

@@ -72,10 +72,10 @@ export default function StudentsPage() {
                     </Box>
                   </TableCell>
                   <TableCell>
-  <Button component={Link} to="/home" variant="contained" color="primary" size="small">
-    View Schedule
-  </Button>
-          </TableCell>
+                    <Button component={Link} to="/home" variant="contained" color="primary" size="small">
+                       View Schedule
+                     </Button>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
